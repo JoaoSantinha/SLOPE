@@ -9,5 +9,6 @@
 #' @importFrom Rcpp sourceCpp
 #' @import Matrix
 #' @import foreach
+#' @import mccr
 ## usethis namespace: end
 NULL

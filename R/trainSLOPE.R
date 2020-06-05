@@ -55,7 +55,8 @@ trainSLOPE <- function(x,
                                    "mae",
                                    "deviance",
                                    "missclass",
-                                   "auc"),
+                                   "auc",
+                                   "mcc"),
                        ...) {
   ocall <- match.call()
 
@@ -77,7 +78,7 @@ trainSLOPE <- function(x,
 
   ok <- switch(family,
                gaussian = c("mse", "mae"),
-               binomial = c("mse", "mae", "deviance", "misclass", "auc"),
+               binomial = c("mse", "mae", "deviance", "misclass", "auc", "mcc"),
                poisson = c("mse", "mae"),
                multinomial = c("mse", "mae", "deviance"))
   measure <- measure[measure %in% ok]
@@ -168,7 +169,8 @@ trainSLOPE <- function(x,
       mse = "Mean Squared Error",
       mae = "Mean Absolute Error",
       accuracy = "Accuracy",
-      auc = "AUC"
+      auc = "AUC",
+      mcc = "MCC"
     )
   }, FUN.VALUE = character(1))
 

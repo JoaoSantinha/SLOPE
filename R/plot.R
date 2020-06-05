@@ -162,7 +162,7 @@ plot.SLOPE = function(x,
 #' plot(tune, ci_col = "salmon", col = "black")
 plot.TrainedSLOPE <-
   function(x,
-           measure = c("auto", "mse", "mae", "deviance", "auc", "misclass"),
+           measure = c("auto", "mse", "mae", "deviance", "auc", "misclass", "mcc"),
            plot_min = TRUE,
            ci_alpha = 0.2,
            ci_border = FALSE,

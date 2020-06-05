@@ -52,7 +52,8 @@ score.BinomialSLOPE <- function(object,
                                             "mae",
                                             "deviance",
                                             "misclass",
-                                            "auc")) {
+                                            "auc",
+                                            "mcc")) {
   measure <- match.arg(measure)
 
   prob_min <- 1e-05
@@ -62,10 +63,12 @@ score.BinomialSLOPE <- function(object,
   y <- diag(2)[as.numeric(y), ]
 
   y_hat <- stats::predict(object, x, type = "response", simplify = FALSE)
-
+  print(paste0('y_hat',y_hat))
+  print(paste0('y',y))
   switch(
     measure,
     auc = apply(y_hat, 3, function(y_hat_i) auc(y, y_hat_i)),
+    mcc = apply(y_hat, 3, function(y_hat_i) mccr(y, y_hat_i)),
     mse = apply((y_hat + y[, 1] - 1)^2 + (y_hat - y[, 2])^2, 3, mean),
     mae = apply(abs(y_hat + y[, 1] - 1) + abs(y_hat - y[, 2]), 3, mean),
     deviance = {
